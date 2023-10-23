@@ -41,9 +41,9 @@ Before you begin, make sure you have Docker Compose installed on your machine. T
 
 **Clone the Repository**
 
-    ```bash
-    git clone https://github.com/yourusername/Nitter-Rss-Proxy.git
-    ```
+```bash
+git clone https://github.com/yourusername/Nitter-Rss-Proxy.git
+```
 ### Run using Docker
 
 
