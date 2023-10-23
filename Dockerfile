@@ -9,7 +9,4 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 COPY ./rss_proxy /app/rss_proxy
 COPY ./.env /app/.env
 
-CMD ["uvicorn", "rss_proxy.main:app", "--host", "0.0.0.0", "--port", "3010"]
-
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
+CMD ["uvicorn", "rss_proxy.main:app", "--host", "0.0.0.0", "--port", "3010", "--proxy-headers"]
