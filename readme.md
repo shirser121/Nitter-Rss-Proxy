@@ -1,6 +1,5 @@
 # Nitter-Rss-Proxy
 
-[![Build Status](https://img.shields.io/travis/shirser121/repo.svg)](https://travis-ci.org/user/repo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
@@ -29,33 +28,49 @@
 
 ---
 
-## Prerequisites
+## 🛠 Prerequisites
 
-- Docker (Version: xx.xx)
-- Redis (Version: xx.xx)
+Before you begin, make sure you have Docker Compose installed on your machine. This project uses Docker Compose for orchestrating the application and Redis containers, which simplifies the deployment process.
+
+- **Docker Compose**:  `v2.22.0-desktop.2`.
+
 
 ---
 
 ## Installation & Setup
 
-### Using Docker
-
-1. **Clone the Repository**
+**Clone the Repository**
 
     ```bash
     git clone https://github.com/yourusername/Nitter-Rss-Proxy.git
     ```
+### Run using Docker
 
-2. **Build the Docker Image**
+
+1. **Build the Docker Image**
 
     ```bash
-    docker build -t nitter-rss-proxy:latest .
+    docker-compose build
     ```
 
-3. **Deploy Using Docker-Compose**
+2. **Deploy Using Docker-Compose**
 
     ```bash
     docker-compose up -d
+    ```
+
+### Using Python
+1. **Install the Dependencies**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. **Make sure Redis is running** 
+
+3. **Run the application**
+    ```bash
+    uvicorn rss_proxy.main:app 
     ```
 
 ## 🌍 Environment Variables
