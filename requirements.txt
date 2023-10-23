@@ -1,5 +1,6 @@
-fastapi[all]
-redis
+fastapi[all]~=0.104.0
+redis~=5.0.1
 uvicorn
 pydantic
-httpx
+httpx~=0.25.0
+python-dotenv~=1.0.0
