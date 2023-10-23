@@ -14,6 +14,8 @@ services:
     environment:
       - REDIS_HOST=redis
       - TZ=Asia/Jerusalem
+    restart: always
 
   redis:
     image: "redis:latest"
+    restart: always
