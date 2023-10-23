@@ -4,7 +4,7 @@ from rss_proxy.api.v1 import rss
 
 app = FastAPI()
 
-app.include_router(rss.router, prefix="/v1")
+app.include_router(rss.router, prefix="/api/v1")
 
 
 @app.on_event("startup")
