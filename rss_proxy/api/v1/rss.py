@@ -48,6 +48,6 @@ async def proxy_to_healthy_rss_host(username: str, request: Request, force_updat
 
             raise HTTPException(status_code=response.status_code, detail=f"Failed to fetch from {target_url}")
 
-    await redis_manager_instance.set_cache(cache_key, response.content, REDIS_CACHE_DURATION_SECONDS * 6 * 24)
+    await redis_manager_instance.set_cache(cache_key, response.content, REDIS_CACHE_DURATION_SECONDS)
 
     return Response(content=response.content, media_type="application/xml")
