@@ -26,8 +26,7 @@ async def proxy_to_healthy_rss_host(username: str, request: Request, force_updat
     if cached_content and not force_update:
         logger.info("Resolve rss from cache")
         if cached_content == 'NOT EXIST':
-            logger.warn(f"Requested rss not found - maybe use not exist {username}")
-            await redis_manager_instance.set_cache(cache_key, 'NOT EXIST', REDIS_CACHE_DURATION_SECONDS)
+            logger.warn(f"Requested rss not found - maybe user not exist {username}")
             raise HTTPException(status_code=404, detail=f"Failed to fetch from {username} - maybe "
                                                         f"username not exist")
         else:
@@ -44,10 +43,12 @@ async def proxy_to_healthy_rss_host(username: str, request: Request, force_updat
         response = await client.get(target_url)
 
     logger.info(f"Get rss feed from {target_url}")
-    if response.status_code != 200:
-        logger.warn(f"Requested rss not found - maybe use not exist {username}")
-        await redis_manager_instance.set_cache(cache_key, 'NOT EXIST', REDIS_CACHE_DURATION_SECONDS)
+    if response.status_code == 404:
+        logger.warn(f"404 - Requested rss not found - maybe use not exist {username}")
+        await redis_manager_instance.set_cache(cache_key, 'NOT EXIST', 60 * 60)
+        raise HTTPException(status_code=response.status_code, detail=f"Failed to fetch from {target_url}")
 
+    elif response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=f"Failed to fetch from {target_url}")
 
     rss_feed = await refactor_rss_feed(response.text)
